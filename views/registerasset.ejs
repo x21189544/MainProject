@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web3 IT Asset Management Register Asset</title>
+</head>
+<body>
+  <!-- include header partials -->
+  <%- include('partials/header') %>
+
+  <h1>Welcome to the Web3 IT Asset Management Register Page</h1>
+  <div class="container">
+    <h2>Register Asset</h2>
+    <form method="POST" action="/registerasset">
+      <div class="form-group">
+        <label for="assetid">Asset ID</label>
+        <input type="text" class="form-control" id="assetid" name="assetid" placeholder="Enter Asset ID" required>
+      </div>
+      <div class="form-group">
+        <label for="make">Asset Name</label>
+        <input type="text" class="form-control" id="make" name="make" placeholder="Enter Asset Make" required>
+      </div>
+      <div class="form-group">
+        <label for="model">Asset Model</label>
+        <input type="text" class="form-control" id="model" name="model" placeholder="Enter Asset Model" required>
+      </div>
+      <div class="form-group">  
+        <label for="serial">Asset Serial Number</label>
+        <input type="text" class="form-control" id="serial" name="serial" placeholder="Enter Asset Serial Number" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Register Asset</button>
+    </form>
+  </div>
+
+  <!-- include header partials -->
+  <%- include('partials/footer') %>
+</body>
+</html>
