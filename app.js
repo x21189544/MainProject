@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const port = 3000;
+const port = 8080;
 
 //Set the view engine to EJS
 app.set('view engine', 'ejs');
