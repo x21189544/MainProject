@@ -30,7 +30,7 @@ const Asset = mongoose.model('Asset', assetSchema);
 //Serve static files from the 'public' directory
 app.use(express.static('public'));
 
-//bootstrap
+//Use Bootstrap
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
 //Define routes
