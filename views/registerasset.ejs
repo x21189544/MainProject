@@ -1,505 +1,459 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Web3 IT Asset Management Register Asset</title>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"></script>
-</head>
-<body>
-  <!-- include header partials -->
-  <%- include('partials/header') %>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Web3 IT Asset Management Register Asset</title>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"
+    ></script>
+  </head>
 
-  <h1>Welcome to the Web3 IT Asset Management Register Page</h1>
-  
-  <!-- Register Asset Form -->
-  <div class="container">
-    <h2>Register Asset</h2>
-    <form method="POST" action="/registerasset">
+  <body>
+    <!-- include header partials -->
+    <%- include('partials/header') %>
+
+    <h1>Welcome to the Web3 IT Asset Management Register Page</h1>
+
+    <!-- Register Asset -->
+    <div class="container">
+      <h2>Register Asset</h2>
+
+      <!-- serial number-->
       <div class="form-group">
-        <label for="assetid">Asset ID</label>
-        <input type="text" class="form-control" id="assetid" name="assetid" placeholder="Enter Asset ID" required>
+        <label for="serial">Asset Serial Number</label>
+        <input
+          type="text"
+          class="form-control"
+          id="serial"
+          name="serial"
+          placeholder="Enter Asset Serial Number"
+          required
+        />
       </div>
+
+      <!-- asset type -->
       <div class="form-group">
-        <label for="make">Asset Name</label>
-        <input type="text" class="form-control" id="make" name="make" placeholder="Enter Asset Make" required>
+        <label for="assetType">Asset Type</label>
+        <input
+          type="text"
+          class="form-control"
+          id="assetType"
+          name="assetType"
+          placeholder="Select Asset Type"
+          required
+        />
       </div>
+
+      <!-- make -->
+      <div class="form-group">
+        <label for="make">Asset Make</label>
+        <input
+          type="text"
+          class="form-control"
+          id="make"
+          name="make"
+          placeholder="Enter Asset Make"
+          required
+        />
+      </div>
+
+      <!-- model-->
       <div class="form-group">
         <label for="model">Asset Model</label>
-        <input type="text" class="form-control" id="model" name="model" placeholder="Enter Asset Model" required>
+        <input
+          type="text"
+          class="form-control"
+          id="model"
+          name="model"
+          placeholder="Enter Asset Model"
+          required
+        />
       </div>
-      <div class="form-group">  
-        <label for="serial">Asset Serial Number</label>
-        <input type="text" class="form-control" id="serial" name="serial" placeholder="Enter Asset Serial Number" required>
-      </div>
+
+      <!-- RAM-->
       <div class="form-group">
-        <label for="nftUri">IPFS location</label>
-        <input type="text" class="form-control" id="nftUri" name="nftUri" placeholder="IPFS location" required>
+        <label for="ram">Asset RAM</label>
+        <input
+          type="text"
+          class="form-control"
+          id="ram"
+          name="ram"
+          placeholder="Enter Asset RAM"
+          required
+        />
       </div>
-      <button type="submit" class="btn btn-primary">Register Asset</button>
-    </form>
-  </div>
 
-  <!-- include header partials -->
-  <%- include('partials/footer') %>
+      <!-- hard drive type -->
+      <div class="form-group">
+        <label for="hardDriveType">Asset Hard Drive Type</label>
+        <input
+          type="text"
+          class="form-control"
+          id="hardDriveType"
+          name="hardDriveType"
+          placeholder="Select Asset Hard Drive Type"
+          required
+        />
+      </div>
 
-  <script> // the below script code is convention in web3 in forming the communication with Web
+      <!-- hard drive size -->
+      <div class="form-group">
+        <label for="hardDriveSize">Asset Hard Drive Size</label>
+        <input
+          type="text"
+          class="form-control"
+          id="hardDriveSize"
+          name="hardDriveSize"
+          placeholder="Enter Asset Hard Drive Size"
+          required
+        />
+      </div>
 
-    let account;
-    const connectMetamask = async () => {
-        if(window.ethereum !== "undefined") {
-            const accounts = await ethereum.request({method: "eth_requestAccounts"});
-            account = accounts[0];
-            document.getElementById("userArea").innerHTML = `User Account: ${account}`;
+      <!-- location -->
+      <div class="form-group">
+        <label for="location">Asset Location</label>
+        <input
+          type="text"
+          class="form-control"
+          id="location"
+          name="location"
+          placeholder="Enter Asset Location"
+          required
+        />
+      </div>
+
+      <button onclick="registerAsset()" type="submit" class="btn btn-primary">
+        Register Asset
+      </button>
+    </div>
+
+    <p class="container" id="statusArea">Status: status will display here</p>
+
+    <!-- Display Asset Details-->
+    <div class="container">
+      <h2>Asset Details</h2>
+      <!-- Get Owner Details -->
+      <div id="getOwnerArea" class="form-group">
+        <label for="serialGetOwner">Asset Serial Number</label>
+        <input
+          type="text"
+          class="form-control"
+          id="serialGetOwner"
+          name="serialGetOwner"
+          placeholder="Enter Asset Serial Number"
+          required
+        />
+      </div>
+
+      <button onclick="getOwner()" class="btn btn-primary">
+        Get Asset Details
+      </button>
+      <p id="ownerArea">Owner will display here</p>
+      <div id="detailsArea" style="display: none">
+        <p id="getAssetType">Asset Type will display here</p>
+        <p id="getMake">Make will display here</p>
+        <p id="getModel">Model will display here</p>
+        <p id="getRam">RAM will display here</p>
+        <p id="getHarddriveType">Hard Drive Type will display here</p>
+        <p id="getHardDriveSize">Hard Drive Size will display here</p>
+        <p id="getLocation">Location will display here</p>
+      </div>
+    </div>
+
+    <!-- include header partials -->
+    <%- include('partials/footer') %>
+
+    <script>
+      // the below script code is convention in web3 in forming the communication with Web
+      let account;
+      const connectMetamask = async () => {
+        if (window.ethereum !== "undefined") {
+          const accounts = await ethereum.request({
+            method: "eth_requestAccounts",
+          });
+          account = accounts[0];
+          document.getElementById(
+            "userArea"
+          ).innerHTML = `User Account: ${account}`;
         }
 
         //contract ABI
-        const ABI =[
-{
-"inputs": [],
-"stateMutability": "nonpayable",
-"type": "constructor"
-},
-{
-"anonymous": false,
-"inputs": [
-  {
-    "indexed": true,
-    "internalType": "address",
-    "name": "_owner",
-    "type": "address"
-  },
-  {
-    "indexed": true,
-    "internalType": "address",
-    "name": "_approved",
-    "type": "address"
-  },
-  {
-    "indexed": true,
-    "internalType": "uint256",
-    "name": "_tokenId",
-    "type": "uint256"
-  }
-],
-"name": "Approval",
-"type": "event"
-},
-{
-"anonymous": false,
-"inputs": [
-  {
-    "indexed": true,
-    "internalType": "address",
-    "name": "_owner",
-    "type": "address"
-  },
-  {
-    "indexed": true,
-    "internalType": "address",
-    "name": "_operator",
-    "type": "address"
-  },
-  {
-    "indexed": false,
-    "internalType": "bool",
-    "name": "_approved",
-    "type": "bool"
-  }
-],
-"name": "ApprovalForAll",
-"type": "event"
-},
-{
-"anonymous": false,
-"inputs": [
-  {
-    "indexed": true,
-    "internalType": "address",
-    "name": "previousOwner",
-    "type": "address"
-  },
-  {
-    "indexed": true,
-    "internalType": "address",
-    "name": "newOwner",
-    "type": "address"
-  }
-],
-"name": "OwnershipTransferred",
-"type": "event"
-},
-{
-"anonymous": false,
-"inputs": [
-  {
-    "indexed": true,
-    "internalType": "address",
-    "name": "_from",
-    "type": "address"
-  },
-  {
-    "indexed": true,
-    "internalType": "address",
-    "name": "_to",
-    "type": "address"
-  },
-  {
-    "indexed": true,
-    "internalType": "uint256",
-    "name": "_tokenId",
-    "type": "uint256"
-  }
-],
-"name": "Transfer",
-"type": "event"
-},
-{
-"inputs": [],
-"name": "CANNOT_TRANSFER_TO_ZERO_ADDRESS",
-"outputs": [
-  {
-    "internalType": "string",
-    "name": "",
-    "type": "string"
-  }
-],
-"stateMutability": "view",
-"type": "function"
-},
-{
-"inputs": [],
-"name": "NOT_CURRENT_OWNER",
-"outputs": [
-  {
-    "internalType": "string",
-    "name": "",
-    "type": "string"
-  }
-],
-"stateMutability": "view",
-"type": "function"
-},
-{
-"inputs": [
-  {
-    "internalType": "address",
-    "name": "_approved",
-    "type": "address"
-  },
-  {
-    "internalType": "uint256",
-    "name": "_tokenId",
-    "type": "uint256"
-  }
-],
-"name": "approve",
-"outputs": [],
-"stateMutability": "nonpayable",
-"type": "function"
-},
-{
-"inputs": [
-  {
-    "internalType": "address",
-    "name": "_owner",
-    "type": "address"
-  }
-],
-"name": "balanceOf",
-"outputs": [
-  {
-    "internalType": "uint256",
-    "name": "",
-    "type": "uint256"
-  }
-],
-"stateMutability": "view",
-"type": "function"
-},
-{
-"inputs": [
-  {
-    "internalType": "uint256",
-    "name": "_tokenId",
-    "type": "uint256"
-  }
-],
-"name": "getApproved",
-"outputs": [
-  {
-    "internalType": "address",
-    "name": "",
-    "type": "address"
-  }
-],
-"stateMutability": "view",
-"type": "function"
-},
-{
-"inputs": [
-  {
-    "internalType": "address",
-    "name": "_owner",
-    "type": "address"
-  },
-  {
-    "internalType": "address",
-    "name": "_operator",
-    "type": "address"
-  }
-],
-"name": "isApprovedForAll",
-"outputs": [
-  {
-    "internalType": "bool",
-    "name": "",
-    "type": "bool"
-  }
-],
-"stateMutability": "view",
-"type": "function"
-},
-{
-"inputs": [
-  {
-    "internalType": "address",
-    "name": "_to",
-    "type": "address"
-  },
-  {
-    "internalType": "uint256",
-    "name": "_tokenId",
-    "type": "uint256"
-  },
-  {
-    "internalType": "string",
-    "name": "_uri",
-    "type": "string"
-  }
-],
-"name": "mint",
-"outputs": [],
-"stateMutability": "nonpayable",
-"type": "function"
-},
-{
-"inputs": [],
-"name": "name",
-"outputs": [
-  {
-    "internalType": "string",
-    "name": "_name",
-    "type": "string"
-  }
-],
-"stateMutability": "view",
-"type": "function"
-},
-{
-"inputs": [],
-"name": "owner",
-"outputs": [
-  {
-    "internalType": "address",
-    "name": "",
-    "type": "address"
-  }
-],
-"stateMutability": "view",
-"type": "function"
-},
-{
-"inputs": [
-  {
-    "internalType": "uint256",
-    "name": "_tokenId",
-    "type": "uint256"
-  }
-],
-"name": "ownerOf",
-"outputs": [
-  {
-    "internalType": "address",
-    "name": "_owner",
-    "type": "address"
-  }
-],
-"stateMutability": "view",
-"type": "function"
-},
-{
-"inputs": [
-  {
-    "internalType": "address",
-    "name": "_from",
-    "type": "address"
-  },
-  {
-    "internalType": "address",
-    "name": "_to",
-    "type": "address"
-  },
-  {
-    "internalType": "uint256",
-    "name": "_tokenId",
-    "type": "uint256"
-  }
-],
-"name": "safeTransferFrom",
-"outputs": [],
-"stateMutability": "nonpayable",
-"type": "function"
-},
-{
-"inputs": [
-  {
-    "internalType": "address",
-    "name": "_from",
-    "type": "address"
-  },
-  {
-    "internalType": "address",
-    "name": "_to",
-    "type": "address"
-  },
-  {
-    "internalType": "uint256",
-    "name": "_tokenId",
-    "type": "uint256"
-  },
-  {
-    "internalType": "bytes",
-    "name": "_data",
-    "type": "bytes"
-  }
-],
-"name": "safeTransferFrom",
-"outputs": [],
-"stateMutability": "nonpayable",
-"type": "function"
-},
-{
-"inputs": [
-  {
-    "internalType": "address",
-    "name": "_operator",
-    "type": "address"
-  },
-  {
-    "internalType": "bool",
-    "name": "_approved",
-    "type": "bool"
-  }
-],
-"name": "setApprovalForAll",
-"outputs": [],
-"stateMutability": "nonpayable",
-"type": "function"
-},
-{
-"inputs": [
-  {
-    "internalType": "bytes4",
-    "name": "_interfaceID",
-    "type": "bytes4"
-  }
-],
-"name": "supportsInterface",
-"outputs": [
-  {
-    "internalType": "bool",
-    "name": "",
-    "type": "bool"
-  }
-],
-"stateMutability": "view",
-"type": "function"
-},
-{
-"inputs": [],
-"name": "symbol",
-"outputs": [
-  {
-    "internalType": "string",
-    "name": "_symbol",
-    "type": "string"
-  }
-],
-"stateMutability": "view",
-"type": "function"
-},
-{
-"inputs": [
-  {
-    "internalType": "uint256",
-    "name": "_tokenId",
-    "type": "uint256"
-  }
-],
-"name": "tokenURI",
-"outputs": [
-  {
-    "internalType": "string",
-    "name": "",
-    "type": "string"
-  }
-],
-"stateMutability": "view",
-"type": "function"
-},
-{
-"inputs": [
-  {
-    "internalType": "address",
-    "name": "_from",
-    "type": "address"
-  },
-  {
-    "internalType": "address",
-    "name": "_to",
-    "type": "address"
-  },
-  {
-    "internalType": "uint256",
-    "name": "_tokenId",
-    "type": "uint256"
-  }
-],
-"name": "transferFrom",
-"outputs": [],
-"stateMutability": "nonpayable",
-"type": "function"
-},
-{
-"inputs": [
-  {
-    "internalType": "address",
-    "name": "_newOwner",
-    "type": "address"
-  }
-],
-"name": "transferOwnership",
-"outputs": [],
-"stateMutability": "nonpayable",
-"type": "function"
-}
-]
-      
-        ;
-        const Address = "0xeab4ebe281eb1f661321c4858e38cb67e683e387"; //conrtact address
+        const ABI = [
+          {
+            anonymous: false,
+            inputs: [
+              {
+                indexed: true,
+                internalType: "address",
+                name: "registrant",
+                type: "address",
+              },
+              {
+                indexed: false,
+                internalType: "string",
+                name: "serialNumber",
+                type: "string",
+              },
+            ],
+            name: "AssetRegistered",
+            type: "event",
+          },
+          {
+            anonymous: false,
+            inputs: [
+              {
+                indexed: false,
+                internalType: "string",
+                name: "serialNumber",
+                type: "string",
+              },
+            ],
+            name: "AssetUpdated",
+            type: "event",
+          },
+          {
+            inputs: [
+              {
+                internalType: "string",
+                name: "_serialNumber",
+                type: "string",
+              },
+            ],
+            name: "getAssetBySerialNumber",
+            outputs: [
+              {
+                internalType: "string",
+                name: "",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "",
+                type: "string",
+              },
+              {
+                internalType: "address",
+                name: "",
+                type: "address",
+              },
+            ],
+            stateMutability: "view",
+            type: "function",
+          },
+          {
+            inputs: [
+              {
+                internalType: "string",
+                name: "_serialNumber",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "_assetType",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "_make",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "_model",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "_RAM",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "_hardDriveType",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "_hardDriveSize",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "_location",
+                type: "string",
+              },
+            ],
+            name: "registerAsset",
+            outputs: [],
+            stateMutability: "nonpayable",
+            type: "function",
+          },
+          {
+            inputs: [
+              {
+                internalType: "string",
+                name: "_serialNumber",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "_assetType",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "_make",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "_model",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "_RAM",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "_hardDriveType",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "_hardDriveSize",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "_location",
+                type: "string",
+              },
+            ],
+            name: "updateAsset",
+            outputs: [],
+            stateMutability: "nonpayable",
+            type: "function",
+          },
+        ];
+
+        const Address = "0xf35629444a6901100dfd7e2d7488a8610b78ad20"; //conrtact address
         window.web3 = await new Web3(window.ethereum);
         window.contract = await new window.web3.eth.Contract(ABI, Address);
-        document.getElementById("contractArea").innerHTML = "Connected to Contract"; //calling the elementID and replacing
-    }
+        document.getElementById("contractArea").innerHTML =
+          "Connected to Contract"; //calling the elementID and replacing
+      };
 
-    //mint function
-    const mint = async () => {
-        const to = document.getElementById("nftTo").value;
-        const tokenId = document.getElementById("nftId").value;
-        const uri = document.getElementById("nftUri").value;
-        await window.contract.methods.mint(to, tokenId, uri).send({from: account});
-    }
-  </script>
-</body>
+      const registerAsset = async () => {
+        const serial = document.getElementById("serial").value;
+        console.log(serial);
+        const assetType = document.getElementById("assetType").value;
+        const make = document.getElementById("make").value;
+        const model = document.getElementById("model").value;
+        const RAM = document.getElementById("ram").value;
+        const hardDriveType = document.getElementById("hardDriveType").value;
+        const hardDriveSize = document.getElementById("hardDriveSize").value;
+        const location = document.getElementById("location").value;
+        console.log(
+          serial,
+          assetType,
+          make,
+          model,
+          RAM,
+          hardDriveType,
+          hardDriveSize,
+          location
+        );
+        try {
+          const result = await window.contract.methods
+            .registerAsset(
+              serial,
+              assetType,
+              make,
+              model,
+              RAM,
+              hardDriveType,
+              hardDriveSize,
+              location
+            )
+            .send({ from: account });
+          document.getElementById(
+            "statusArea"
+          ).innerHTML = `Status: Asset ${serial} registered`;
+        } catch (err) {
+          document.getElementById(
+            "statusArea"
+          ).innerHTML = `Asset not registered`;
+        }
+      };
+
+      const getOwner = async () => {
+        const serial = document.getElementById("serialGetOwner").value;
+        console.log(serial);
+        try {
+          const result = await window.contract.methods
+            .getAssetBySerialNumber(serial)
+            .call();
+          console.log(result);
+          document.getElementById("detailsArea").style.display = "block";
+          document.getElementById(
+            "ownerArea"
+          ).innerHTML = `Owner: ${result[8]}`;
+          document.getElementById(
+            "getAssetType"
+          ).innerHTML = `Asset Type: ${result[1]}`;
+          document.getElementById("getMake").innerHTML = `Make: ${result[2]}`;
+          document.getElementById("getModel").innerHTML = `Model: ${result[3]}`;
+          document.getElementById("getRam").innerHTML = `RAM: ${result[4]}`;
+          document.getElementById(
+            "getHarddriveType"
+          ).innerHTML = `Hard Drive Type: ${result[5]}`;
+          document.getElementById(
+            "getHardDriveSize"
+          ).innerHTML = `Hard Drive Size	: ${result[6]}`;
+          document.getElementById(
+            "getLocation"
+          ).innerHTML = `Location: ${result[7]}`;
+        } catch (err) {
+          document.getElementById(
+            "ownerArea"
+          ).innerHTML = `Asset not registered`;
+          document.getElementById("detailsArea").style.display = "none";
+        }
+      };
+    </script>
+  </body>
 </html>
