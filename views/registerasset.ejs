@@ -10,7 +10,7 @@
     ></script>
   </head>
 
-  <body>
+  <body style="background-color: burlywood">
     <!-- include header partials -->
     <%- include('partials/header') %>
 
@@ -147,18 +147,84 @@
         />
       </div>
 
-      <button onclick="getOwner()" class="btn btn-primary">
+      <button
+        onclick="getOwner()"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#assetDetailsModal"
+      >
         Get Asset Details
       </button>
-      <p id="ownerArea">Owner will display here</p>
-      <div id="detailsArea" style="display: none">
-        <p id="getAssetType">Asset Type will display here</p>
-        <p id="getMake">Make will display here</p>
-        <p id="getModel">Model will display here</p>
-        <p id="getRam">RAM will display here</p>
-        <p id="getHarddriveType">Hard Drive Type will display here</p>
-        <p id="getHardDriveSize">Hard Drive Size will display here</p>
-        <p id="getLocation">Location will display here</p>
+    </div>
+
+    <!-- Modal Asset Details -->
+    <div
+      class="modal fade"
+      id="assetDetailsModal"
+      tabindex="-1"
+      aria-labelledby="assetDetailsModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="assetDetailsModal">Asset Details</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p id="ownerArea">Owner will display here</p>
+            <div id="detailsArea" style="display: none">
+              <table
+                class="table table-striped table-hover color: background-color: $indigo-900"
+              >
+                <tbody>
+                  <tr>
+                    <td>Asset Type</td>
+                    <td id="getAssetType"></td>
+                  </tr>
+                  <tr>
+                    <td>Make</td>
+                    <td id="getMake"></td>
+                  </tr>
+                  <tr>
+                    <td>Model</td>
+                    <td id="getModel"></td>
+                  </tr>
+                  <tr>
+                    <td>RAM</td>
+                    <td id="getRam"></td>
+                  </tr>
+                  <tr>
+                    <td>Hard Drive Type</td>
+                    <td id="getHarddriveType"></td>
+                  </tr>
+                  <tr>
+                    <td>Hard Drive Size</td>
+                    <td id="getHardDriveSize"></td>
+                  </tr>
+                  <tr>
+                    <td>Location</td>
+                    <td id="getLocation"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -432,21 +498,17 @@
           document.getElementById(
             "ownerArea"
           ).innerHTML = `Owner: ${result[8]}`;
-          document.getElementById(
-            "getAssetType"
-          ).innerHTML = `Asset Type: ${result[1]}`;
-          document.getElementById("getMake").innerHTML = `Make: ${result[2]}`;
-          document.getElementById("getModel").innerHTML = `Model: ${result[3]}`;
-          document.getElementById("getRam").innerHTML = `RAM: ${result[4]}`;
+          document.getElementById("getAssetType").innerHTML = `${result[1]}`;
+          document.getElementById("getMake").innerHTML = `${result[2]}`;
+          document.getElementById("getModel").innerHTML = `${result[3]}`;
+          document.getElementById("getRam").innerHTML = `${result[4]}`;
           document.getElementById(
             "getHarddriveType"
-          ).innerHTML = `Hard Drive Type: ${result[5]}`;
+          ).innerHTML = `${result[5]}`;
           document.getElementById(
             "getHardDriveSize"
-          ).innerHTML = `Hard Drive Size	: ${result[6]}`;
-          document.getElementById(
-            "getLocation"
-          ).innerHTML = `Location: ${result[7]}`;
+          ).innerHTML = `${result[6]}`;
+          document.getElementById("getLocation").innerHTML = `${result[7]}`;
         } catch (err) {
           document.getElementById(
             "ownerArea"
