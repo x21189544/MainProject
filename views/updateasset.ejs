@@ -14,11 +14,37 @@
     <!-- include header partials -->
     <%- include('partials/header') %>
 
-    <h1>Welcome to the Web3 IT Asset Management Update Page</h1>
+    <h1 class="text-center">
+      Welcome to the Web3 IT Asset Management Update Page
+    </h1>
 
     <!-- Get Asset Details-->
     <div class="container">
       <h2>Update Asset Details</h2>
+
+      <!-- Spinner -->
+      <div class="container">
+        <div
+          id="spinner"
+          class="spinner-border text-success d-none"
+          role="status"
+        ></div>
+      </div>
+
+      <!-- Display asset does not exist Alert -->
+      <div
+        id="assetDoesNotExistArea"
+        class="alert alert-danger d-none"
+        role="alert"
+      >
+        Asset Does Not Exist
+      </div>
+
+      <!-- Display Asset Updated Alert -->
+      <div id="statusArea" class="alert alert-success d-none" role="alert">
+        Status: status will display here
+      </div>
+
       <!-- Get Details -->
       <div id="getDetailsArea" class="form-group">
         <label for="serialGetDetails">Asset Serial Number</label>
@@ -38,7 +64,7 @@
     </div>
 
     <!-- Update Asset -->
-    <div class="container">
+    <div id="formArea" class="container d-none">
       <h2>Input Updated Asset Details</h2>
 
       <!-- serial number-->
@@ -153,8 +179,6 @@
         Update Asset
       </button>
     </div>
-
-    <p class="container" id="statusArea">Status: status will display here</p>
 
     <!-- include header partials -->
     <%- include('partials/footer') %>
@@ -373,6 +397,7 @@
 
       //Update Asset Function
       const updateAsset = async () => {
+        document.getElementById("spinner").classList.remove("d-none");
         const serial = document.getElementById("serial").value;
         const assetType = document.getElementById("assetType").value;
         const make = document.getElementById("make").value;
@@ -406,9 +431,14 @@
             .send({ from: account });
           document.getElementById(
             "statusArea"
-          ).innerHTML = `Status: Asset ${serial} updated`;
+          ).innerHTML = `Asset ${serial} updated`;
+          document.getElementById("statusArea").classList.remove("d-none");
+          document.getElementById("spinner").classList.add("d-none");
+          document.getElementById("formArea").classList.add("d-none");
         } catch (err) {
           document.getElementById("statusArea").innerHTML = `Asset not updated`;
+          document.getElementById("statusArea").classList.remove("d-none");
+          document.getElementById("spinner").classList.add("d-none");
         }
       };
 
@@ -429,8 +459,16 @@
           document.getElementById("hardDriveType").value = result[5];
           document.getElementById("hardDriveSize").value = result[6];
           document.getElementById("location").value = result[7];
+          document.getElementById("formArea").classList.remove("d-none");
+          document
+            .getElementById("assetDoesNotExistArea")
+            .classList.add("d-none");
         } catch (err) {
           console.log(err);
+          document.getElementById("formArea").classList.add("d-none");
+          document
+            .getElementById("assetDoesNotExistArea")
+            .classList.remove("d-none");
         }
       };
     </script>

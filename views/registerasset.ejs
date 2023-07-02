@@ -14,11 +14,18 @@
     <!-- include header partials -->
     <%- include('partials/header') %>
 
-    <h1>Welcome to the Web3 IT Asset Management Register Page</h1>
+    <h1 class="text-center">
+      Welcome to the Web3 IT Asset Management Register Page
+    </h1>
 
     <!-- Register Asset -->
     <div class="container">
       <h2>Register Asset</h2>
+
+      <!-- Display Asset Registered Alter -->
+      <div id="statusArea" class="alert alert-success d-none" role="alert">
+        Status: status will display here
+      </div>
 
       <!-- serial number-->
       <div class="form-group">
@@ -129,9 +136,16 @@
       </button>
     </div>
 
-    <p class="container" id="statusArea">Status: status will display here</p>
+    <!-- Spinner -->
+    <div class="container">
+      <div
+        id="spinner"
+        class="spinner-border text-success d-none"
+        role="status"
+      ></div>
+    </div>
 
-    <!-- Display Asset Details-->
+    <!-- Display Asset Details -->
     <div class="container">
       <h2>Asset Details</h2>
       <!-- Get Owner Details -->
@@ -446,6 +460,7 @@
 
       //Register Asset Function
       const registerAsset = async () => {
+        document.getElementById("spinner").classList.remove("d-none");
         const serial = document.getElementById("serial").value;
         console.log(serial);
         const assetType = document.getElementById("assetType").value;
@@ -478,13 +493,18 @@
               location
             )
             .send({ from: account });
+
           document.getElementById(
             "statusArea"
-          ).innerHTML = `Status: Asset ${serial} registered`;
+          ).innerHTML = `Asset ${serial} registered`;
+          document.getElementById("statusArea").classList.remove("d-none");
+          document.getElementById("spinner").classList.add("d-none");
         } catch (err) {
           document.getElementById(
             "statusArea"
           ).innerHTML = `Asset not registered`;
+          document.getElementById("statusArea").classList.remove("d-none");
+          document.getElementById("spinner").classList.add("d-none");
         }
       };
 
