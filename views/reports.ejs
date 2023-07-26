@@ -46,6 +46,7 @@
       </button>
     </div>
 
+<<<<<<< HEAD
     <!-- Display Maintenance Details-->
     <div class="container">
       <br />
@@ -74,6 +75,8 @@
       </button>
     </div>
 
+=======
+>>>>>>> 4b36b59f468288feb535916ee603e9aae10e2db3
     <!-- Modal Asset Details -->
     <div
       class="modal fade"
@@ -146,6 +149,7 @@
       </div>
     </div>
 
+<<<<<<< HEAD
     <!-- Modal Asset Maintenance -->
     <div
       class="modal fade"
@@ -196,6 +200,8 @@
       </div>
     </div>
 
+=======
+>>>>>>> 4b36b59f468288feb535916ee603e9aae10e2db3
     <!-- include header partials -->
     <%- include('partials/footer') %>
 
@@ -221,7 +227,11 @@
               {
                 indexed: true,
                 internalType: "address",
+<<<<<<< HEAD
                 name: "owner",
+=======
+                name: "registrant",
+>>>>>>> 4b36b59f468288feb535916ee603e9aae10e2db3
                 type: "address",
               },
               {
@@ -243,6 +253,7 @@
                 name: "serialNumber",
                 type: "string",
               },
+<<<<<<< HEAD
               {
                 indexed: false,
                 internalType: "address",
@@ -268,11 +279,14 @@
                 name: "serialNumber",
                 type: "string",
               },
+=======
+>>>>>>> 4b36b59f468288feb535916ee603e9aae10e2db3
             ],
             name: "AssetUpdated",
             type: "event",
           },
           {
+<<<<<<< HEAD
             anonymous: false,
             inputs: [
               {
@@ -292,12 +306,15 @@
             type: "event",
           },
           {
+=======
+>>>>>>> 4b36b59f468288feb535916ee603e9aae10e2db3
             inputs: [
               {
                 internalType: "string",
                 name: "_serialNumber",
                 type: "string",
               },
+<<<<<<< HEAD
               {
                 internalType: "string",
                 name: "_maintenanceInfo",
@@ -307,6 +324,58 @@
             name: "performMaintenance",
             outputs: [],
             stateMutability: "nonpayable",
+=======
+            ],
+            name: "getAssetBySerialNumber",
+            outputs: [
+              {
+                internalType: "string",
+                name: "",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "",
+                type: "string",
+              },
+              {
+                internalType: "string",
+                name: "",
+                type: "string",
+              },
+              {
+                internalType: "address",
+                name: "",
+                type: "address",
+              },
+            ],
+            stateMutability: "view",
+>>>>>>> 4b36b59f468288feb535916ee603e9aae10e2db3
             type: "function",
           },
           {
@@ -365,6 +434,7 @@
                 type: "string",
               },
               {
+<<<<<<< HEAD
                 internalType: "address",
                 name: "_newOwner",
                 type: "address",
@@ -383,6 +453,8 @@
                 type: "string",
               },
               {
+=======
+>>>>>>> 4b36b59f468288feb535916ee603e9aae10e2db3
                 internalType: "string",
                 name: "_assetType",
                 type: "string",
@@ -423,6 +495,7 @@
             stateMutability: "nonpayable",
             type: "function",
           },
+<<<<<<< HEAD
           {
             inputs: [
               {
@@ -504,6 +577,11 @@
         ];
 
         const Address = "0x9727b6b3268e92ebbcab3a162429b0efb0276a82"; //conrtact address
+=======
+        ];
+
+        const Address = "0xf35629444a6901100dfd7e2d7488a8610b78ad20"; //conrtact address
+>>>>>>> 4b36b59f468288feb535916ee603e9aae10e2db3
         window.web3 = await new Web3(window.ethereum);
         window.contract = await new window.web3.eth.Contract(ABI, Address);
         document.getElementById("contractArea").innerHTML =
@@ -516,7 +594,11 @@
         console.log(serial);
         try {
           const result = await window.contract.methods
+<<<<<<< HEAD
             .getAssetDetails(serial)
+=======
+            .getAssetBySerialNumber(serial)
+>>>>>>> 4b36b59f468288feb535916ee603e9aae10e2db3
             .call();
           console.log(result);
           document.getElementById("detailsArea").style.display = "block";
@@ -541,6 +623,7 @@
           document.getElementById("detailsArea").style.display = "none";
         }
       };
+<<<<<<< HEAD
 
       //Get asset maintenance performed
       const getMaintenance = async () => {
@@ -559,6 +642,8 @@
           ).innerHTML = `Asset not found`;
         }
       };
+=======
+>>>>>>> 4b36b59f468288feb535916ee603e9aae10e2db3
     </script>
   </body>
 </html>

@@ -14,11 +14,14 @@
     <!-- include header partials -->
     <%- include('partials/header') %>
 
-    <h1>Welcome to the Web3 IT Asset Management Register Page</h1>
+    <h1 class="text-center">
+      Welcome to the Web3 IT Asset Management Register Page
+    </h1>
 
     <!-- Register Asset -->
     <div class="container">
       <h2>Register Asset</h2>
+<<<<<<< HEAD
       <form>
         <!-- serial number-->
         <div class="form-group">
@@ -128,10 +131,233 @@
           Register Asset
         </button>
       </form>
+=======
+
+      <!-- Display Asset Registered Alter -->
+      <div id="statusArea" class="alert alert-success d-none" role="alert">
+        Status: status will display here
+      </div>
+
+      <!-- serial number-->
+      <div class="form-group">
+        <label for="serial">Asset Serial Number</label>
+        <input
+          type="text"
+          class="form-control"
+          id="serial"
+          name="serial"
+          placeholder="Enter Asset Serial Number"
+          required
+        />
+      </div>
+
+      <!-- asset type -->
+      <div class="form-group">
+        <label for="assetType">Asset Type</label>
+        <input
+          type="text"
+          class="form-control"
+          id="assetType"
+          name="assetType"
+          placeholder="Select Asset Type"
+          required
+        />
+      </div>
+
+      <!-- make -->
+      <div class="form-group">
+        <label for="make">Asset Make</label>
+        <input
+          type="text"
+          class="form-control"
+          id="make"
+          name="make"
+          placeholder="Enter Asset Make"
+          required
+        />
+      </div>
+
+      <!-- model-->
+      <div class="form-group">
+        <label for="model">Asset Model</label>
+        <input
+          type="text"
+          class="form-control"
+          id="model"
+          name="model"
+          placeholder="Enter Asset Model"
+          required
+        />
+      </div>
+
+      <!-- RAM-->
+      <div class="form-group">
+        <label for="ram">Asset RAM</label>
+        <input
+          type="text"
+          class="form-control"
+          id="ram"
+          name="ram"
+          placeholder="Enter Asset RAM"
+          required
+        />
+      </div>
+
+      <!-- hard drive type -->
+      <div class="form-group">
+        <label for="hardDriveType">Asset Hard Drive Type</label>
+        <input
+          type="text"
+          class="form-control"
+          id="hardDriveType"
+          name="hardDriveType"
+          placeholder="Select Asset Hard Drive Type"
+          required
+        />
+      </div>
+
+      <!-- hard drive size -->
+      <div class="form-group">
+        <label for="hardDriveSize">Asset Hard Drive Size</label>
+        <input
+          type="text"
+          class="form-control"
+          id="hardDriveSize"
+          name="hardDriveSize"
+          placeholder="Enter Asset Hard Drive Size"
+          required
+        />
+      </div>
+
+      <!-- location -->
+      <div class="form-group">
+        <label for="location">Asset Location</label>
+        <input
+          type="text"
+          class="form-control"
+          id="location"
+          name="location"
+          placeholder="Enter Asset Location"
+          required
+        />
+      </div>
+
+      <button onclick="registerAsset()" type="submit" class="btn btn-primary">
+        Register Asset
+      </button>
+>>>>>>> 4b36b59f468288feb535916ee603e9aae10e2db3
     </div>
 
-    <p class="container" id="statusArea">Status: status will display here</p>
+    <!-- Spinner -->
+    <div class="container">
+      <div
+        id="spinner"
+        class="spinner-border text-success d-none"
+        role="status"
+      ></div>
+    </div>
 
+<<<<<<< HEAD
+=======
+    <!-- Display Asset Details -->
+    <div class="container">
+      <h2>Asset Details</h2>
+      <!-- Get Owner Details -->
+      <div id="getOwnerArea" class="form-group">
+        <label for="serialGetOwner">Asset Serial Number</label>
+        <input
+          type="text"
+          class="form-control"
+          id="serialGetOwner"
+          name="serialGetOwner"
+          placeholder="Enter Asset Serial Number"
+          required
+        />
+      </div>
+
+      <button
+        onclick="getOwner()"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#assetDetailsModal"
+      >
+        Get Asset Details
+      </button>
+    </div>
+
+    <!-- Modal Asset Details -->
+    <div
+      class="modal fade"
+      id="assetDetailsModal"
+      tabindex="-1"
+      aria-labelledby="assetDetailsModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="assetDetailsModal">Asset Details</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <!-- Modal Table -->
+          <div class="modal-body">
+            <p id="ownerArea">Owner will display here</p>
+            <div id="detailsArea" style="display: none">
+              <table
+                class="table table-striped table-hover color: background-color: $indigo-900"
+              >
+                <tbody>
+                  <tr>
+                    <td>Asset Type</td>
+                    <td id="getAssetType"></td>
+                  </tr>
+                  <tr>
+                    <td>Make</td>
+                    <td id="getMake"></td>
+                  </tr>
+                  <tr>
+                    <td>Model</td>
+                    <td id="getModel"></td>
+                  </tr>
+                  <tr>
+                    <td>RAM</td>
+                    <td id="getRam"></td>
+                  </tr>
+                  <tr>
+                    <td>Hard Drive Type</td>
+                    <td id="getHarddriveType"></td>
+                  </tr>
+                  <tr>
+                    <td>Hard Drive Size</td>
+                    <td id="getHardDriveSize"></td>
+                  </tr>
+                  <tr>
+                    <td>Location</td>
+                    <td id="getLocation"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+>>>>>>> 4b36b59f468288feb535916ee603e9aae10e2db3
     <!-- include header partials -->
     <%- include('partials/footer') %>
 
@@ -349,6 +575,7 @@
 
       //Register Asset Function
       const registerAsset = async () => {
+        document.getElementById("spinner").classList.remove("d-none");
         const serial = document.getElementById("serial").value;
         console.log(serial);
         const assetType = document.getElementById("assetType").value;
@@ -381,13 +608,18 @@
               location
             )
             .send({ from: account });
+
           document.getElementById(
             "statusArea"
-          ).innerHTML = `Status: Asset ${serial} registered`;
+          ).innerHTML = `Asset ${serial} registered`;
+          document.getElementById("statusArea").classList.remove("d-none");
+          document.getElementById("spinner").classList.add("d-none");
         } catch (err) {
           document.getElementById(
             "statusArea"
           ).innerHTML = `Asset not registered`;
+          document.getElementById("statusArea").classList.remove("d-none");
+          document.getElementById("spinner").classList.add("d-none");
         }
       };
     </script>
