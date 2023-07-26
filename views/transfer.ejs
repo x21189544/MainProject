@@ -3,24 +3,24 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Web3 IT Asset Management Update Asset</title>
+    <title>Web3 IT Asset Management Transfer Ownership</title>
     <script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"
     ></script>
   </head>
 
-  <body style="background-color: burlywood">
+  <body style="background-color: lightskyblue">
     <!-- include header partials -->
     <%- include('partials/header') %>
 
     <h1 class="text-center">
-      Welcome to the Web3 IT Asset Management Update Page
+      Welcome to the Web3 IT Asset Management Transfer Ownership Page
     </h1>
 
     <!-- Get Asset Details-->
     <div class="container">
-      <h2>Update Asset Details</h2>
+      <h2>Transfer Asset</h2>
 
       <!-- Spinner -->
       <div class="container">
@@ -40,151 +40,122 @@
         Asset Does Not Exist
       </div>
 
-      <!-- Display Asset Updated Alert -->
+      <!-- Display Transfer Asset Alert -->
       <div id="statusArea" class="alert alert-success d-none" role="alert">
         Status: status will display here
       </div>
 
       <!-- Get Details -->
       <div id="getDetailsArea" class="form-group">
-        <label for="serialGetDetails">Asset Serial Number</label>
+        <label for="serialNum">Asset Serial Number</label>
         <input
           type="text"
           class="form-control"
-          id="serialGetDetails"
-          name="serialGetDetails"
+          id="serialNum"
+          name="serialNum"
           placeholder="Enter Asset Serial Number"
           required
         />
       </div>
 
-      <button onclick="populateAssetDetails()" class="btn btn-primary">
-        Get Current Asset Details
+      <div id="serialNewOwnerArea" class="form-group">
+        <label for="serialNewOwner">Input New Owner's Wallet Address</label>
+        <input
+          type="text"
+          class="form-control"
+          id="serialNewOwner"
+          name="serialNewOwner"
+          placeholder="Input New Owner's Wallet Address"
+          required
+        />
+      </div>
+
+      <button
+        onclick="getDetails()"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#detailsModal"
+      >
+        Input Maintenance Performed Details
       </button>
     </div>
 
-    <!-- Update Asset -->
-    <div id="formArea" class="container d-none">
-      <h2>Input Updated Asset Details</h2>
-      
-      <form>
-        <!-- serial number-->
-        <div class="form-group">
-          <label for="serial">Asset Serial Number</label>
-          <input
-            type="text"
-            class="form-control"
-            id="serial"
-            name="serial"
-            placeholder="Asset Serial Number"
-            required
-            readonly
-          />
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="detailsModal"
+      tabindex="-1"
+      aria-labelledby="detailsModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="detailsModalLabel">
+              Are the following details correct?
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>Please confirm details before proceeding</p>
+            <div class="modal-body">
+              <p id="ownerArea">Owner will display here</p>
+              <div id="detailsArea" style="display: none">
+                <table
+                  class="table table-striped table-hover color: background-color: $indigo-900"
+                >
+                  <tbody>
+                    <tr>
+                      <td>Serial Number</td>
+                      <td id="getSerialNumber"></td>
+                    </tr>
+                    <tr>
+                      <td>Asset Type</td>
+                      <td id="getAssetType"></td>
+                    </tr>
+                    <tr>
+                      <td>Make</td>
+                      <td id="getMake"></td>
+                    </tr>
+                    <tr>
+                      <td>Model</td>
+                      <td id="getModel"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              onclick="resetYesButton()"
+            >
+              No
+            </button>
+            <button
+              onclick="transferOwner()"
+              id="confirmButton"
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Yes
+            </button>
+          </div>
         </div>
-  
-        <!-- asset type -->
-        <div class="form-group">
-          <label for="assetType">Asset Type</label>
-          <input
-            type="text"
-            class="form-control"
-            id="assetType"
-            name="assetType"
-            placeholder="Asset Type"
-            required
-            readonly
-          />
-        </div>
-  
-        <!-- make -->
-        <div class="form-group">
-          <label for="make">Asset Make</label>
-          <input
-            type="text"
-            class="form-control"
-            id="make"
-            name="make"
-            placeholder="Asset Make"
-            required
-            readonly
-          />
-        </div>
-  
-        <!-- model-->
-        <div class="form-group">
-          <label for="model">Asset Model</label>
-          <input
-            type="text"
-            class="form-control"
-            id="model"
-            name="model"
-            placeholder="Asset Model"
-            required
-            readonly
-          />
-        </div>
-  
-        <!-- RAM-->
-        <div class="form-group">
-          <label for="ram">Asset RAM</label>
-          <input
-            type="text"
-            class="form-control"
-            id="ram"
-            name="ram"
-            placeholder="Enter Asset RAM"
-            required
-          />
-        </div>
-  
-        <!-- hard drive type -->
-        <div class="form-group">
-          <label for="hardDriveType">Asset Hard Drive Type</label>
-          <input
-            type="text"
-            class="form-control"
-            id="hardDriveType"
-            name="hardDriveType"
-            placeholder="Select Asset Hard Drive Type"
-            required
-          />
-        </div>
-  
-        <!-- hard drive size -->
-        <div class="form-group">
-          <label for="hardDriveSize">Asset Hard Drive Size</label>
-          <input
-            type="text"
-            class="form-control"
-            id="hardDriveSize"
-            name="hardDriveSize"
-            placeholder="Enter Asset Hard Drive Size"
-            required
-          />
-        </div>
-  
-        <!-- location -->
-        <div class="form-group">
-          <label for="location">Asset Location</label>
-          <input
-            type="text"
-            class="form-control"
-            id="location"
-            name="location"
-            placeholder="Enter Asset Location"
-            required
-          />
-        </div>
-  
-        <button onclick="updateAsset()" type="submit" class="btn btn-primary">
-          Update Asset
-        </button>
-      </form>
+      </div>
     </div>
 
     <!-- include header partials -->
     <%- include('partials/footer') %>
-
     <script>
       // the below script code is convention in web3 in forming the communication with Web
       let account;
@@ -496,82 +467,49 @@
           "Connected to Contract"; //calling the elementID and replacing
       };
 
-      //Update Asset Function
-      const updateAsset = async () => {
-        document.getElementById("spinner").classList.remove("d-none");
-        const serial = document.getElementById("serial").value;
-        const assetType = document.getElementById("assetType").value;
-        const make = document.getElementById("make").value;
-        const model = document.getElementById("model").value;
-        const RAM = document.getElementById("ram").value;
-        const hardDriveType = document.getElementById("hardDriveType").value;
-        const hardDriveSize = document.getElementById("hardDriveSize").value;
-        const location = document.getElementById("location").value;
-        console.log(
-          serial,
-          assetType,
-          make,
-          model,
-          RAM,
-          hardDriveType,
-          hardDriveSize,
-          location
-        );
+      //Transfer Ownership
+      const transferOwner = async () => {
+        const serial = document.getElementById("serialNum").value;
+        const newOwner = document.getElementById("serialNewOwner").value;
+        console.log(serial, newOwner);
         try {
           const result = await window.contract.methods
-            .updateAsset(
-              serial,
-              assetType,
-              make,
-              model,
-              RAM,
-              hardDriveType,
-              hardDriveSize,
-              location
-            )
+            .transferAsset(serial, newOwner)
             .send({ from: account });
-          document.getElementById(
-            "statusArea"
-          ).innerHTML = `Asset ${serial} updated`;
-          document.getElementById("statusArea").classList.remove("d-none");
-          document.getElementById("spinner").classList.add("d-none");
-          document.getElementById("formArea").classList.add("d-none");
         } catch (err) {
-          document.getElementById("statusArea").innerHTML = `Asset not updated`;
-          document.getElementById("statusArea").classList.remove("d-none");
-          document.getElementById("spinner").classList.add("d-none");
+          console.log(err);
         }
       };
 
-      //Get asset details and populate form
-      const populateAssetDetails = async () => {
-        const serial = document.getElementById("serialGetDetails").value;
+      //Get owner and details function
+      const getDetails = async () => {
+        const serial = document.getElementById("serialNum").value;
         console.log(serial);
         try {
           const result = await window.contract.methods
             .getAssetDetails(serial)
             .call();
           console.log(result);
-          document.getElementById("serial").value = serial;
-          document.getElementById("assetType").value = result[1];
-          document.getElementById("make").value = result[2];
-          document.getElementById("model").value = result[3];
-          document.getElementById("ram").value = result[4];
-          document.getElementById("hardDriveType").value = result[5];
-          document.getElementById("hardDriveSize").value = result[6];
-          document.getElementById("location").value = result[7];
-          document.getElementById("formArea").classList.remove("d-none");
-          document
-            .getElementById("assetDoesNotExistArea")
-            .classList.add("d-none");
+          document.getElementById("detailsArea").style.display = "block";
+          document.getElementById("getSerialNumber").innerHTML = serial;
+          document.getElementById(
+            "ownerArea"
+          ).innerHTML = `Owner: ${result[8]}`;
+          document.getElementById("getAssetType").innerHTML = `${result[1]}`;
+          document.getElementById("getMake").innerHTML = `${result[2]}`;
+          document.getElementById("getModel").innerHTML = `${result[3]}`;
         } catch (err) {
-          console.log(err);
-          document.getElementById("formArea").classList.add("d-none");
-          document
-            .getElementById("assetDoesNotExistArea")
-            .classList.remove("d-none");
+          document.getElementById(
+            "ownerArea"
+          ).innerHTML = `Asset not registered`;
+          document.getElementById("detailsArea").style.display = "none";
+          document.getElementById("confirmButton").classList.add("d-none");
         }
       };
+
+      function resetYesButton() {
+        document.getElementById("confirmButton").classList.remove("d-none");
+      }
     </script>
   </body>
 </html>
