@@ -23,40 +23,17 @@
       <h2>Update Asset Details</h2>
 
       <!-- Spinner -->
-      <div class="container">
-        <div
-          id="spinner"
-          class="spinner-border text-success d-none"
-          role="status"
-        ></div>
-      </div>
+      <%- include('partials/spinner') %>
 
       <!-- Display asset does not exist Alert -->
-      <div
-        id="assetDoesNotExistArea"
-        class="alert alert-danger d-none"
-        role="alert"
-      >
-        Asset Does Not Exist
-      </div>
+      <%- include('partials/assetDoesNotExistArea') %> 
 
       <!-- Display Asset Updated Alert -->
-      <div id="statusArea" class="alert alert-success d-none" role="alert">
-        Status: status will display here
-      </div>
+      <%- include('partials/statusArea') %>
 
       <!-- Get Details -->
-      <div id="getDetailsArea" class="form-group">
-        <label for="serialGetDetails">Asset Serial Number</label>
-        <input
-          type="text"
-          class="form-control"
-          id="serialGetDetails"
-          name="serialGetDetails"
-          placeholder="Enter Asset Serial Number"
-          required
-        />
-      </div>
+      <!-- serialGet Partial -->
+      <%- include('partials/serialGet') %>
 
       <button onclick="populateAssetDetails()" class="btn btn-primary">
         Get Current Asset Details
@@ -67,119 +44,12 @@
     <div id="formArea" class="container d-none">
       <h2>Input Updated Asset Details</h2>
       
-      <form>
-        <!-- serial number-->
-        <div class="form-group">
-          <label for="serial">Asset Serial Number</label>
-          <input
-            type="text"
-            class="form-control"
-            id="serial"
-            name="serial"
-            placeholder="Asset Serial Number"
-            required
-            readonly
-          />
-        </div>
+      <!-- Asset Form partials-->
+      <%- include('partials/assetForm') %>
   
-        <!-- asset type -->
-        <div class="form-group">
-          <label for="assetType">Asset Type</label>
-          <input
-            type="text"
-            class="form-control"
-            id="assetType"
-            name="assetType"
-            placeholder="Asset Type"
-            required
-            readonly
-          />
-        </div>
-  
-        <!-- make -->
-        <div class="form-group">
-          <label for="make">Asset Make</label>
-          <input
-            type="text"
-            class="form-control"
-            id="make"
-            name="make"
-            placeholder="Asset Make"
-            required
-            readonly
-          />
-        </div>
-  
-        <!-- model-->
-        <div class="form-group">
-          <label for="model">Asset Model</label>
-          <input
-            type="text"
-            class="form-control"
-            id="model"
-            name="model"
-            placeholder="Asset Model"
-            required
-            readonly
-          />
-        </div>
-  
-        <!-- RAM-->
-        <div class="form-group">
-          <label for="ram">Asset RAM</label>
-          <input
-            type="text"
-            class="form-control"
-            id="ram"
-            name="ram"
-            placeholder="Enter Asset RAM"
-            required
-          />
-        </div>
-  
-        <!-- hard drive type -->
-        <div class="form-group">
-          <label for="hardDriveType">Asset Hard Drive Type</label>
-          <input
-            type="text"
-            class="form-control"
-            id="hardDriveType"
-            name="hardDriveType"
-            placeholder="Select Asset Hard Drive Type"
-            required
-          />
-        </div>
-  
-        <!-- hard drive size -->
-        <div class="form-group">
-          <label for="hardDriveSize">Asset Hard Drive Size</label>
-          <input
-            type="text"
-            class="form-control"
-            id="hardDriveSize"
-            name="hardDriveSize"
-            placeholder="Enter Asset Hard Drive Size"
-            required
-          />
-        </div>
-  
-        <!-- location -->
-        <div class="form-group">
-          <label for="location">Asset Location</label>
-          <input
-            type="text"
-            class="form-control"
-            id="location"
-            name="location"
-            placeholder="Enter Asset Location"
-            required
-          />
-        </div>
-  
-        <button onclick="updateAsset()" type="submit" class="btn btn-primary">
-          Update Asset
-        </button>
-      </form>
+      <button onclick="updateAsset()" type="submit" class="btn btn-primary">
+        Update Asset
+      </button>
     </div>
 
     <!-- include header partials -->
@@ -545,7 +415,7 @@
 
       //Get asset details and populate form
       const populateAssetDetails = async () => {
-        const serial = document.getElementById("serialGetDetails").value;
+        const serial = document.getElementById("serialGet").value;
         console.log(serial);
         try {
           const result = await window.contract.methods
@@ -553,9 +423,13 @@
             .call();
           console.log(result);
           document.getElementById("serial").value = serial;
+          document.getElementById("serial").readOnly = true;
           document.getElementById("assetType").value = result[1];
+          document.getElementById("assetType").readOnly = true;
           document.getElementById("make").value = result[2];
+          document.getElementById("make").readOnly = true;
           document.getElementById("model").value = result[3];
+          document.getElementById("model").readOnly = true;
           document.getElementById("ram").value = result[4];
           document.getElementById("hardDriveType").value = result[5];
           document.getElementById("hardDriveSize").value = result[6];

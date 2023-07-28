@@ -23,40 +23,17 @@
       <h2>Input Asset Maintenance Performed</h2>
 
       <!-- Spinner -->
-      <div class="container">
-        <div
-          id="spinner"
-          class="spinner-border text-success d-none"
-          role="status"
-        ></div>
-      </div>
+      <%- include('partials/spinner') %>
 
       <!-- Display asset does not exist Alert -->
-      <div
-        id="assetDoesNotExistArea"
-        class="alert alert-danger d-none"
-        role="alert"
-      >
-        Asset Does Not Exist
-      </div>
+      <%- include('partials/assetDoesNotExistArea') %>
 
       <!-- Display Asset Maintenance Performed Alert -->
-      <div id="statusArea" class="alert alert-success d-none" role="alert">
-        Status: status will display here
-      </div>
+      <%- include('partials/statusArea') %>
 
       <!-- Get Details -->
-      <div id="getDetailsArea" class="form-group">
-        <label for="serialGetMaintenance">Asset Serial Number</label>
-        <input
-          type="text"
-          class="form-control"
-          id="serialGetMaintenance"
-          name="serialGetMaintenance"
-          placeholder="Enter Asset Serial Number"
-          required
-        />
-      </div>
+      <!-- serialGet Partial -->
+      <%- include('partials/serialGet') %>
 
       <div id="maintenancePerformedArea" class="form-group">
         <label for="maintenancePerformed">Describe maintenance performed</label>
@@ -156,6 +133,7 @@
 
     <!-- include header partials -->
     <%- include('partials/footer') %>
+    
     <script>
       // the below script code is convention in web3 in forming the communication with Web
       let account;
@@ -469,7 +447,7 @@
 
       //Input asset maintenance performed
       const performMaintenance = async () => {
-        const serial = document.getElementById("serialGetMaintenance").value;
+        const serial = document.getElementById("serialGet").value;
         const maintenancePerformed = document.getElementById(
           "maintenancePerformed"
         ).value;
@@ -485,7 +463,7 @@
 
       //Get owner and details function
       const getOwner = async () => {
-        const serial = document.getElementById("serialGetMaintenance").value;
+        const serial = document.getElementById("serialGet").value;
         console.log(serial);
         try {
           const result = await window.contract.methods
