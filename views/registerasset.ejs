@@ -3,32 +3,46 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Web3 IT Asset Management Register Asset</title>
+    <title>SmartAssetIT Register Asset</title>
+    <!-- style sheet from https://codepen.io/asfarmed/pen/zYQYMy -->
+    <link rel="stylesheet" href="./style2.css" />
     <script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"
     ></script>
   </head>
 
-  <body style="background-color: burlywood">
+  <body>
     <!-- include header partials -->
     <%- include('partials/header') %>
 
-    <h1>Welcome to the Web3 IT Asset Management Register Page</h1>
+    <h1 class="text-center">
+      SmartAssetIT Register Page
+    </h1>
 
     <!-- Register Asset -->
     <div class="container">
       <h2>Register Asset</h2>
       
+      <!-- Spinner -->
+      <%- include('partials/spinner') %>
+
+      <!-- Display asset does not exist Alert -->
+      <%- include('partials/assetDoesNotExistArea') %> 
+
+      <!-- Display Asset Updated Alert -->
+      <%- include('partials/statusArea') %>
+      
       <!-- Asset Form partials -->
       <%- include('partials/assetForm') %>
+      
+      <!-- include connectMetaMask partials -->
+      <%- include('partials/connectMetaMask') %>
   
       <button onclick="registerAsset()" type="submit" class="btn btn-primary">
         Register Asset
       </button>
     </div>
-
-    <p class="container" id="statusArea">Status: status will display here</p>
 
     <!-- include footer partials -->
     <%- include('partials/footer') %>
@@ -40,6 +54,7 @@
     <script>
       //Register Asset Function
       const registerAsset = async () => {
+        document.getElementById("spinner").classList.remove("d-none");
         const serial = document.getElementById("serial").value;
         console.log(serial);
         const assetType = document.getElementById("assetType").value;
@@ -72,13 +87,17 @@
               location
             )
             .send({ from: account });
-          document.getElementById(
-            "statusArea"
-          ).innerHTML = `Status: Asset ${serial} registered`;
+          document.getElementById("statusArea").innerHTML = `Asset registered`;
+          document.getElementById("statusArea").classList.remove("alert-danger");
+          document.getElementById("statusArea").classList.add("alert-success");
+          document.getElementById("statusArea").classList.remove("d-none");
+          document.getElementById("spinner").classList.add("d-none");
         } catch (err) {
-          document.getElementById(
-            "statusArea"
-          ).innerHTML = `Asset not registered`;
+          document.getElementById("statusArea").classList.remove("alert-success");
+          document.getElementById("statusArea").classList.add("alert-danger");
+          document.getElementById("statusArea").innerHTML = `Asset not registered`;
+          document.getElementById("statusArea").classList.remove("d-none");
+          document.getElementById("spinner").classList.add("d-none");
         }
       };
     </script>

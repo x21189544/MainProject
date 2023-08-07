@@ -3,97 +3,100 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Web3 IT Asset Management</title>
+    <title>SmartAssetIT Home Page</title>
     <script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"
     ></script>
 </head>
-<body style="background-color: khaki">
-  <!-- include header partials -->
-  <%- include('partials/header') %>
+<body>
+    <!-- animated-background-with-vanta-js https://codepen.io/zanewesley/pen/OJmNYzB -->
+    <div id="bg">
+      <!-- include header partials -->
+      <%- include('partials/header') %>
 
-    <h1 class="text-center">
-      Welcome to the Web3 IT Asset Management Home Page
-    </h1>
-    
-    <div class="container">
-      <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col">
-          <div class="card">
-            <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" class="card-img-top" alt="Register Asset" />
-            <div class="card-body">
-              <h5 class="card-title">Register Asset</h5>
-              <p class="card-text">
-                Registers new assets on to the Blockchain for the first time.
-              </p>
-              <a href="/registerasset" class="btn btn-primary">Register Asset</a>
+      <h1 class="text-center" style="color: darkgoldenrod">
+        SmartAssetIT Home Page
+      </h1>
+      
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+          <div class="col">
+            <div class="card bg-secondary text-white " >
+              <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" class="card-img-top" alt="Register Asset" />
+              <div class="card-body">
+                <p class="card-text">
+                  Registers new assets on to the Blockchain for the first time.
+                </p>
+                <a href="/registerasset" class="btn btn-primary">Register Asset</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img src="https://img.freepik.com/free-photo/young-man-engineer-making-program-analyses_1303-20402.jpg?w=1380&t=st=1690231381~exp=1690231981~hmac=22dfc5bec492b4e7326ce139190a6be140c1822f845415d2555ee1f855ba371b" class="card-img-top" alt="Update Asset" />
-            <div class="card-body">
-              <h5 class="card-title">Update Asset</h5>
-              <p class="card-text">
-                Updates details of assets already registered on the blockchain.
-              </p>
-              <a href="/updateasset" class="btn btn-primary">Update Asset</a>
+          <div class="col">
+            <div class="card bg-secondary text-white">
+              <img src="https://img.freepik.com/free-photo/young-man-engineer-making-program-analyses_1303-20402.jpg?w=1380&t=st=1690231381~exp=1690231981~hmac=22dfc5bec492b4e7326ce139190a6be140c1822f845415d2555ee1f855ba371b" class="card-img-top" alt="Update Asset" />
+              <div class="card-body">
+                <p class="card-text">
+                  Updates details of assets already registered on the blockchain.
+                </p>
+                <a href="/updateasset" class="btn btn-primary">Update Asset</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="Perform Maintenance" />
-            <div class="card-body">
-              <h5 class="card-title">Maintenance</h5>
-              <p class="card-text">
-                Record Maintenance performed on an Asset.
-              </p>
-              <a href="/maintenance" class="btn btn-primary">Perform Maintenance</a>
+          <div class="col">
+            <div class="card bg-secondary text-white">
+              <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="Perform Maintenance" />
+              <div class="card-body">
+                <p class="card-text">
+                  Record Maintenance performed on an Asset.
+                </p>
+                <a href="/maintenance" class="btn btn-primary">Perform Maintenance</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img src="https://img.freepik.com/free-photo/businesspeople-working-finance-accounting-analyze-financial-graph-budget-planning-future-office-room_74952-1396.jpg?w=1380&t=st=1690231739~exp=1690232339~hmac=0fe0c34177b75be0597e9b2f85fb070397fc0ae8add5697a0cc4d70e23495d19" class="card-img-top" alt="Reports" />
-            <div class="card-body">
-              <h5 class="card-title">Reports</h5>
-              <p class="card-text">
-                View Reports of Asset Details or Maintenance performed on an Asset.
-              </p>
-              <a href="/reports" class="btn btn-primary">Reports</a>
+          <div class="col">
+            <div class="card bg-secondary text-white">
+              <img src="https://img.freepik.com/free-photo/businesspeople-working-finance-accounting-analyze-financial-graph-budget-planning-future-office-room_74952-1396.jpg?w=1380&t=st=1690231739~exp=1690232339~hmac=0fe0c34177b75be0597e9b2f85fb070397fc0ae8add5697a0cc4d70e23495d19" class="card-img-top" alt="Reports" />
+              <div class="card-body">
+                <p class="card-text">
+                  View Reports of Asset Details or Maintenance performed on an Asset.
+                </p>
+                <a href="/reports" class="btn btn-primary">Reports</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img src="https://img.freepik.com/free-photo/technological-business_23-2147641216.jpg?w=1380&t=st=1690231922~exp=1690232522~hmac=32a80432639f2305a6254f7e27f6bdd5db7d5d2dc84cfcb30945625ca44b6f2e" class="card-img-top" alt="Transfer Asset" />
-            <div class="card-body">
-              <h5 class="card-title">Transfer</h5>
-              <p class="card-text">
-                Transfer Asset to a new Owner.
-              </p>
-              <a href="/transfer" class="btn btn-primary">Transfer Asset</a>
+          <div class="col">
+            <div class="card bg-secondary text-white">
+              <img src="https://img.freepik.com/free-photo/technological-business_23-2147641216.jpg?w=1380&t=st=1690231922~exp=1690232522~hmac=32a80432639f2305a6254f7e27f6bdd5db7d5d2dc84cfcb30945625ca44b6f2e" class="card-img-top" alt="Transfer Asset" />
+              <div class="card-body">
+                <p class="card-text">
+                  Transfer Asset to a new Owner.
+                </p>
+                <a href="/transfer" class="btn btn-primary">Transfer Asset</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img src="https://img.freepik.com/free-photo/assortment-dirty-dumped-objects_23-2148996977.jpg?w=1380&t=st=1690232121~exp=1690232721~hmac=47987a95e027e479fb99162e4e949179966a2f78f02c6435652f97b8250692c2" class="card-img-top" alt="End Of Life" />
-            <div class="card-body">
-              <h5 class="card-title">End Of Life</h5>
-              <p class="card-text">
-                End of Life procedures.
-              </p>
-              <a href="/endoflife" class="btn btn-primary">End Of Life</a>
+          <div class="col">
+            <div class="card bg-secondary text-white">
+              <img src="https://img.freepik.com/free-photo/assortment-dirty-dumped-objects_23-2148996977.jpg?w=1380&t=st=1690232121~exp=1690232721~hmac=47987a95e027e479fb99162e4e949179966a2f78f02c6435652f97b8250692c2" class="card-img-top" alt="End Of Life" />
+              <div class="card-body">
+                <p class="card-text">
+                  End of Life procedures.
+                </p>
+                <a href="/endoflife" class="btn btn-primary">End Of Life</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
+  </div>
+    <!-- animated-background-with-vanta-js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script src="./script.js"></script>
+    
+  
     <!-- include footer partials -->
     <%- include('partials/footer') %>
   </body>

@@ -3,19 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Web3 IT Asset Management Maintenance</title>
+    <title>SmartAssetIT Management Maintenance</title>
+    <!-- style sheet from https://codepen.io/asfarmed/pen/zYQYMy -->
+    <link rel="stylesheet" href="./style2.css" />
     <script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"
     ></script>
   </head>
 
-  <body style="background-color: lightskyblue">
+  <body>
     <!-- include header partials -->
     <%- include('partials/header') %>
 
     <h1 class="text-center">
-      Welcome to the Web3 IT Asset Management Maintenance Page
+      SmartAssetIT Maintenance Page
     </h1>
 
     <!-- Get Asset Details-->
@@ -46,6 +48,11 @@
           required
         />
       </div>
+      
+          <p></p>
+    
+    <!-- include connectMetaMask partials -->
+    <%- include('partials/connectMetaMask') %>
 
       <button
         onclick="getDetails()"
@@ -56,6 +63,7 @@
         Input Maintenance Performed Details
       </button>
     </div>
+
 
     <!-- Modal -->
     <div
@@ -141,6 +149,7 @@
     <script>
       //Input asset maintenance performed
       const performMaintenance = async () => {
+        document.getElementById("spinner").classList.remove("d-none");
         const serial = document.getElementById("serialGet").value;
         const maintenancePerformed = document.getElementById(
           "maintenancePerformed"
@@ -150,8 +159,18 @@
           const result = await window.contract.methods
             .performMaintenance(serial, maintenancePerformed)
             .send({ from: account });
+          document.getElementById("statusArea").innerHTML = `Maintenance updated`;
+          document.getElementById("statusArea").classList.remove("alert-danger");
+          document.getElementById("statusArea").classList.add("alert-success");
+          document.getElementById("statusArea").classList.remove("d-none");
+          document.getElementById("spinner").classList.add("d-none");
+          document.getElementById("formArea").classList.add("d-none");
         } catch (err) {
-          console.log(err);
+          document.getElementById("statusArea").classList.remove("alert-success");
+          document.getElementById("statusArea").classList.add("alert-danger");
+          document.getElementById("statusArea").innerHTML = `Maintenance not updated`;
+          document.getElementById("statusArea").classList.remove("d-none");
+          document.getElementById("spinner").classList.add("d-none");
         }
       };
 

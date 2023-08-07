@@ -3,24 +3,31 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Web3 IT Asset Management End of Life Procedure</title>
+    <title>SmartAssetIT End of Life Procedure</title>
+    <!-- style sheet from https://codepen.io/asfarmed/pen/zYQYMy -->
+    <link rel="stylesheet" href="./style2.css" />
     <script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"
     ></script>
   </head>
 
-  <body style="background-color: lightskyblue">
+  <body>
     <!-- include header partials -->
     <%- include('partials/header') %>
 
     <h1 class="text-center">
-      Welcome to the Web3 IT Asset Management End of Life Procedure Page
+      SmartAssetIT End of Life Procedure
     </h1>
 
     <!-- mint NFT of secure wipe -->
     <div class="container">
+
       <h2>Input Below Details to mint NFT of secure wipe</h2>
+      
+      <!-- include connectMetaMask partials -->
+      <%- include('partials/connectMetaMask') %>
+      
       <div id="secureWipeArea">
         <input
           class="form-control"
