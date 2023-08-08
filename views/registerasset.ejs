@@ -88,13 +88,9 @@
             )
             .send({ from: account });
           document.getElementById("statusArea").innerHTML = `Asset registered`;
-          document.getElementById("statusArea").classList.remove("alert-danger");
-          document.getElementById("statusArea").classList.add("alert-success");
           document.getElementById("statusArea").classList.remove("d-none");
           document.getElementById("spinner").classList.add("d-none");
         } catch (err) {
-          document.getElementById("statusArea").classList.remove("alert-success");
-          document.getElementById("statusArea").classList.add("alert-danger");
           document.getElementById("statusArea").innerHTML = `Asset not registered`;
           document.getElementById("statusArea").classList.remove("d-none");
           document.getElementById("spinner").classList.add("d-none");

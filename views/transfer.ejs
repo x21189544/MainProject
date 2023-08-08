@@ -156,12 +156,10 @@
             .transferAsset(serial, newOwner)
             .send({ from: account });
           document.getElementById("statusArea").innerHTML = `Asset  Transfered`;
-          document.getElementById("statusArea").classList.add("alert-success");
           document.getElementById("statusArea").classList.remove("d-none");
           document.getElementById("spinner").classList.add("d-none");
           document.getElementById("formArea").classList.add("d-none");
         } catch (err) {
-          document.getElementById("statusArea").classList.add("alert-danger");
           document.getElementById("statusArea").innerHTML = `Asset not Transfered`;
           document.getElementById("statusArea").classList.remove("d-none");
           document.getElementById("spinner").classList.add("d-none");
