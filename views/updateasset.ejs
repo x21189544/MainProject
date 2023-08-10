@@ -22,8 +22,24 @@
 
     <!-- Get Asset Details-->
     <div class="container">
-      <h2>Update Asset Details</h2>
+    <div
+      class="container-fluid cover-container text-center d-flex flex-column w-75"
+    >
+      <div class="row align-items-center justify-content-center flex-fill">
+        <div class="col h100">
+          <h2 class="text-warning">Update Asset</h2>
+          <br />
+          <p class="text-white">
+            Sometimes we need to update our asset with a RAM or Hard Drive 
+            upgrade or need to move location. As part of ITAM, these details 
+            should be recorded and this page helps you do this. Enter
+            the serial number and click "Get Current Asset Deails" to get started.
+          </p>
+          <br />
+          <p class="fs-2 text-warning">FAST - SECURE - DONE!</p>
+        </div>
 
+        <div class="col h100">
       <!-- Get Details -->
       <!-- serialGet Partial -->
       <%- include('partials/serialGet') %>
@@ -47,14 +63,35 @@
 
       <!-- Update Asset -->
       <div id="formArea" class="container d-none">
-      <h2>Input Updated Asset Details</h2>
-      
+            <div class="row align-items-center justify-content-center flex-fill">
+              <div class="col h100">
       <!-- Asset Form partials-->
       <%- include('partials/assetForm') %>
   
       <button onclick="updateAsset()" type="submit" class="btn btn-primary">
         Update Asset
       </button>
+      </div>
+        
+        <div class="col h100">
+          <h2 class="text-warning">Update Details</h2>
+          <br />
+      
+                <p class="text-white">
+            To update the details of your asset change the details as required
+            and click "Update Asset"<br>
+            <p class="text-white">
+            Please note the following fields are not updateable:<br><br>
+              <b>
+              Asset Serial Number<br>
+              Asset Type<Br>
+              Asset Make<br>
+              Asset Model<br>
+              </b>
+            </p>
+          </p>
+        </div>
+
     </div>
 
     <!-- include footer partials -->
@@ -106,6 +143,8 @@
           document.getElementById("spinner").classList.add("d-none");
           document.getElementById("formArea").classList.add("d-none");
         } catch (err) {
+          document.getElementById("statusArea").classList.remove("alert-success");
+          document.getElementById("statusArea").classList.add("alert-danger");
           document.getElementById("statusArea").innerHTML = `Asset not updated`;
           document.getElementById("statusArea").classList.remove("d-none");
           document.getElementById("spinner").classList.add("d-none");

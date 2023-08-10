@@ -21,47 +21,74 @@
     </h1>
 
     <!-- Get Asset Details-->
-    <div class="container">
-      <h2>Input Asset Maintenance Performed</h2>
+    <div
+      class="container-fluid cover-container text-center d-flex flex-column w-75"
+    >
+      <div class="row align-items-center justify-content-center flex-fill">
+        <div class="col h100">
+          <h2 class="text-warning">Record Maintenance</h2>
+          <br />
+          <p class="text-white">
+            Recording maintenance performed on an asset is an essential task as 
+            part of ITAM. It helps create an overall view of an asset usage and 
+            cost and can help make devices about future repairs or replacement.
+          </p>
+          <br />
+          <p class="text-white">
+            To record maintenance in SmartAssetIT, fill in the asset serial number
+            and a description of the maintenance performed in the form provided, 
+            connect your Web3 digital wallet by clicking the "Connect to MetaMask" 
+            button (This must be the Wallet address of the owner of the Asset) 
+            and click "Record Maintenance". Confirm the transaction in MetaMask, 
+            and your Asset maintenance will be recorded.
 
-      <!-- Spinner -->
-      <%- include('partials/spinner') %>
+          </p>
+          <br />
+          <p class="fs-2 text-warning">FAST - SECURE - DONE!</p>
+        </div>
 
-      <!-- Display asset does not exist Alert -->
-      <%- include('partials/assetDoesNotExistArea') %>
-
-      <!-- Display Asset Maintenance Performed Alert -->
-      <%- include('partials/statusArea') %>
-
-      <!-- Get Details -->
-      <!-- serialGet Partial -->
-      <%- include('partials/serialGet') %>
-
-      <div id="maintenancePerformedArea" class="form-group">
-        <label for="maintenancePerformed">Describe maintenance performed</label>
-        <input
-          type="text"
-          class="form-control"
-          id="maintenancePerformed"
-          name="maintenancePerformed"
-          placeholder="Describe maintenance performed"
-          required
-        />
-      </div>
-      
-          <p></p>
+        <div class="col h100">
+          <!-- Spinner -->
+          <%- include('partials/spinner') %>
     
-    <!-- include connectMetaMask partials -->
-    <%- include('partials/connectMetaMask') %>
+          <!-- Display asset does not exist Alert -->
+          <%- include('partials/assetDoesNotExistArea') %>
+    
+          <!-- Display Asset Maintenance Performed Alert -->
+          <%- include('partials/statusArea') %>
+    
+          <!-- Get Details -->
+          <!-- serialGet Partial -->
+          <%- include('partials/serialGet') %>
 
-      <button
-        onclick="getDetails()"
-        class="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#assetModal"
-      >
-        Input Maintenance Performed Details
-      </button>
+          <div id="maintenancePerformedArea" class="form-group">
+            <label for="maintenancePerformed">Record Maintenance</label>
+            <textarea
+              type="text"
+              class="form-control"
+              rows="5"
+              id="maintenancePerformed"
+              name="maintenancePerformed"
+              placeholder="Describe maintenance performed"
+              required
+            /></textarea>
+          </div>
+          
+              <p></p>
+    
+          <!-- include connectMetaMask partials -->
+          <%- include('partials/connectMetaMask') %>
+      
+            <button
+              onclick="getDetails()"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#assetModal"
+            >
+              Record Maintenance
+            </button>
+          </div>
+        </div>
     </div>
 
 
@@ -163,6 +190,8 @@
           document.getElementById("spinner").classList.add("d-none");
           document.getElementById("formArea").classList.add("d-none");
         } catch (err) {
+          document.getElementById("statusArea").classList.remove("alert-success");
+          document.getElementById("statusArea").classList.add("alert-danger");
           document.getElementById("statusArea").innerHTML = `Maintenance not updated`;
           document.getElementById("statusArea").classList.remove("d-none");
           document.getElementById("spinner").classList.add("d-none");

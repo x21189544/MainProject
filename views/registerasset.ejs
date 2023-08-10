@@ -21,27 +21,53 @@
     </h1>
 
     <!-- Register Asset -->
-    <div class="container">
-      <h2>Register Asset</h2>
-      
-      <!-- Spinner -->
-      <%- include('partials/spinner') %>
+    <div
+      class="container-fluid cover-container text-center d-flex flex-column w-75"
+    >
+      <div class="row align-items-center justify-content-center flex-fill">
+        <div class="col h100">
+          <h2 class="text-warning">Register Asset</h2>
+          <br />
+          <p class="text-white">
+            Registering an asset on the asset register is vital to ITAM (IT
+            Asset Management). Registering the Asset using SmartAssetIT is fast
+            and simple and records the asset details and owner in a secure and
+            immutable way. SmartAssetIT makes it easy to comply with internal
+            and regulatory requirements.
+          </p>
+          <br />
+          <p class="text-white">
+            To register an asset using SmartAssetIT fill in the asset details in
+            the form provided, connect your Web3 digital wallet by clicking the
+            "Connect to MetaMask" button (This will be the Wallet address the
+            Asset will be registered to) and click "Register Asset". Confirm
+            your Registration in MetaMask, and your Asset will be recorded.
+          </p>
+          <br />
+          <p class="fs-2 text-warning">FAST - SECURE - DONE!</p>
+        </div>
 
-      <!-- Display asset does not exist Alert -->
-      <%- include('partials/assetDoesNotExistArea') %> 
-
-      <!-- Display Asset Updated Alert -->
-      <%- include('partials/statusArea') %>
-      
-      <!-- Asset Form partials -->
-      <%- include('partials/assetForm') %>
-      
-      <!-- include connectMetaMask partials -->
-      <%- include('partials/connectMetaMask') %>
+        <div class="col h100">
+          <!-- Spinner -->
+          <%- include('partials/spinner') %>
+    
+          <!-- Display asset does not exist Alert -->
+          <%- include('partials/assetDoesNotExistArea') %> 
+    
+          <!-- Display Asset Updated Alert -->
+          <%- include('partials/statusArea') %>
+          
+          <!-- Asset Form partials -->
+          <%- include('partials/assetForm') %>
+          
+          <!-- include connectMetaMask partials -->
+          <%- include('partials/connectMetaMask') %>
   
-      <button onclick="registerAsset()" type="submit" class="btn btn-primary">
-        Register Asset
-      </button>
+          <button onclick="registerAsset()" type="submit" class="btn btn-primary">
+            Register Asset
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- include footer partials -->
@@ -91,6 +117,8 @@
           document.getElementById("statusArea").classList.remove("d-none");
           document.getElementById("spinner").classList.add("d-none");
         } catch (err) {
+          document.getElementById("statusArea").classList.remove("alert-success");
+          document.getElementById("statusArea").classList.add("alert-danger");
           document.getElementById("statusArea").innerHTML = `Asset not registered`;
           document.getElementById("statusArea").classList.remove("d-none");
           document.getElementById("spinner").classList.add("d-none");

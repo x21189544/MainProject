@@ -21,46 +21,65 @@
     </h1>
 
     <!-- Get Asset Details-->
-    <div class="container">
-      <h2>Transfer Asset</h2>
+    <div
+      class="container-fluid cover-container text-center d-flex flex-column w-75"
+    >
+      <div class="row align-items-center justify-content-center flex-fill">
+        <div class="col h100">
+          <h2 class="text-warning">Transfer Asset</h2>
+          <br />
+          <p class="text-white">
+            Time to say goodbye to your asset? When you want to transfer to a 
+            new owner, simply put in the serial number of the asset and the new 
+            owners wallet address, connect to MetaMask (The Wallet of the current 
+            owner must be used) and click "Transfer Asset". Confirm
+            your transaction in MetaMask, and <B>Goodbye Asset!!!</b>
+          </p>
+          <br />
+          <p class="fs-2 text-warning">FAST - SECURE - DONE!</p>
+        </div>
 
-      <!-- Spinner -->
-      <%- include('partials/spinner') %>  
+        <div class="col h100">
 
-      <!-- Display asset does not exist Alert -->
-      <%- include('partials/assetDoesNotExistArea') %> 
+          <!-- Spinner -->
+          <%- include('partials/spinner') %>  
+    
+          <!-- Display asset does not exist Alert -->
+          <%- include('partials/assetDoesNotExistArea') %> 
+    
+          <!-- Display Transfer Asset Alert -->
+          <%- include('partials/statusArea') %> 
 
-      <!-- Display Transfer Asset Alert -->
-      <%- include('partials/statusArea') %> 
-
-      <!-- Get Details -->
-      <!-- serialGet Partial -->
-      <%- include('partials/serialGet') %>
-
-      <div id="serialNewOwnerArea" class="form-group">
-        <label for="serialNewOwner">Input New Owner's Wallet Address</label>
-        <input
-          type="text"
-          class="form-control"
-          id="serialNewOwner"
-          name="serialNewOwner"
-          placeholder="Input New Owner's Wallet Address"
-          required
-        />
+          <!-- Get Details -->
+          <!-- serialGet Partial -->
+          <%- include('partials/serialGet') %>
+    
+          <div id="serialNewOwnerArea" class="form-group">
+            <label for="serialNewOwner">Input New Owner's Wallet Address</label>
+            <input
+              type="text"
+              class="form-control"
+              id="serialNewOwner"
+              name="serialNewOwner"
+              placeholder="Input New Owner's Wallet Address"
+              required
+            />
+          </div>
+    
+          <p></p>
+          <!-- include connectMetaMask partials -->
+          <%- include('partials/connectMetaMask') %>
+          
+          <button
+            onclick="getDetails()"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#assetModal"
+          >
+            Transfer Asset
+          </button>
+        </div>
       </div>
-
-      <p></p>
-      <!-- include connectMetaMask partials -->
-      <%- include('partials/connectMetaMask') %>
-      
-      <button
-        onclick="getDetails()"
-        class="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#assetModal"
-      >
-        Transfer Asset
-      </button>
     </div>
 
     <!-- Modal -->
@@ -160,6 +179,8 @@
           document.getElementById("spinner").classList.add("d-none");
           document.getElementById("formArea").classList.add("d-none");
         } catch (err) {
+          document.getElementById("statusArea").classList.remove("alert-success");
+          document.getElementById("statusArea").classList.add("alert-danger");
           document.getElementById("statusArea").innerHTML = `Asset not Transfered`;
           document.getElementById("statusArea").classList.remove("d-none");
           document.getElementById("spinner").classList.add("d-none");
