@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Blockchain and web3 application for asset management"
+    />
     <title>SmartAssetIT Reports</title>
     <!-- style sheet from https://codepen.io/asfarmed/pen/zYQYMy -->
     <link rel="stylesheet" href="./style2.css" />
@@ -20,64 +24,92 @@
       SmartAssetIT Reports
     </h1>
 
-    <!-- Display Asset Details-->
-    <div class="container">
-      <br />
+    <div
+      class="container-fluid cover-container text-center d-flex flex-column w-75"
+    >
       <!-- include connectMetaMask partials -->
-      <%- include('partials/connectMetaMask') %>
+      <div class="row align-items-center justify-content-center flex-fill">
+        <div class="col h100">
+          <%- include('partials/connectMetaMask') %>
+        </div>
+      </div>
       <!-- Get Owner Details -->
-      <div id="getOwnerArea" class="form-group">
-        <label for="serialGetOwner"
-          >Enter Asset Serial Number below to get Asset Details</label
-        >
-        <input
-          type="text"
-          class="form-control"
-          id="serialGetOwner"
-          name="serialGetOwner"
-          placeholder="Enter Asset Serial Number"
-          required
-        />
+      <div class="row align-items-center justify-content-center flex-fill">
+        <div class="col h100">
+          <h2 class="text-warning">Asset Detail Report</h2>
+          <br />
+          <p class="text-white">
+            Get the full details of an asset by entering the serial number
+            and click "Generate".
+          </p>
+          <br />
+        </div>
+
+        <div class="col h100">
+          
+          <div id="getOwnerArea" class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="serialGetOwner"
+              name="serialGetOwner"
+              placeholder="Enter Asset Serial Number"
+              required
+            />
+          </div>
+      
+          <p></p>
+          <button
+            onclick="getOwner()"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#assetDetailsModal"
+          >
+            Generate
+          </button>
+        </div>
       </div>
       
-      <p></p>
-      <button
-        onclick="getOwner()"
-        class="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#assetDetailsModal"
-      >
-        Get Asset Details
-      </button>
+      <br>
+      <div class="p-1 bg-secondary w-100"></div>
+      <br>
+      
+      <!-- Display Maintenance Details-->
+      <div class="row align-items-center justify-content-center flex-fill">
+        <div class="col h100">
+          <!-- Get Serial Number -->
+          <div id="getMaintenanceArea" class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="serialGetMaintenance"
+              name="serialGetMainenance"
+              placeholder="Enter Asset Serial Number"
+              required
+            />
+          </div>
+
+          <p></p>
+          <button
+            onclick="getMaintenance()"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#assetMaintenanceModal"
+          >
+            Generate
+          </button>
+        </div>
+        
+        <div class="col h100">
+          <h2 class="text-warning">Maintenace Report</h2>
+          <br />
+          <p class="text-white">
+            View the maintenance record on an asset by entering the 
+            serial number and click "Generate"
+          </p>
+          <br />
+        </div>
     </div>
-
-    <!-- Display Maintenance Details-->
-    <div class="container">
-      <br />
-      <!-- Get Serial Number -->
-      <div id="getMaintenanceArea" class="form-group">
-        <label for="serialGetOwner"
-          >Enter Asset Serial Number to view maintenance performed</label
-        >
-        <input
-          type="text"
-          class="form-control"
-          id="serialGetMaintenance"
-          name="serialGetMainenance"
-          placeholder="Enter Asset Serial Number"
-          required
-        />
-      </div>
-
-      <p></p>
-      <button
-        onclick="getMaintenance()"
-        class="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#assetMaintenanceModal"
-      >
-        Get Asset Maintenance
-      </button>
     </div>
 
     <!-- Modal Asset Details -->

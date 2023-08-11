@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Blockchain and web3 application for asset management"
+    />
     <title>SmartAssetIT End of Life Procedure</title>
     <!-- style sheet from https://codepen.io/asfarmed/pen/zYQYMy -->
     <link rel="stylesheet" href="./style2.css" />
@@ -21,54 +25,145 @@
     </h1>
 
     <!-- mint NFT of secure wipe -->
-    <div class="container">
-
-      <h2>Input Below Details to mint NFT of secure wipe</h2>
-      
+    <div
+      class="container-fluid cover-container text-center d-flex flex-column w-75"
+    >
       <!-- include connectMetaMask partials -->
-      <%- include('partials/connectMetaMask') %>
+      <div class="row align-items-center justify-content-center flex-fill">
+        <div class="col h100">
+          <%- include('partials/connectMetaMask') %>
+        </div>
+      </div>
       
-      <div id="secureWipeArea">
-        <input
-          class="form-control"
-          type="text"
-          id="nftTo"
-          placeholder="Wallet Address"
-        />
-        <br />
+      <!-- Crete NFT of secure Wipe  -->
+      <div class="row align-items-center justify-content-center flex-fill">
+        <div class="col h100">
+          <h2 class="text-warning">NFT secure wipe certificate</h2>
+          <br />
+          <p class="text-white">
+            To create an NFT of a secure wipe certificate. First upload the certificate 
+            to IPFS taking note of the IPFS location, fill out the form with the Wallet 
+            Address, serial number and IPFS location and click "Create NFT"
+          </p>
+        </div>
 
-        <input
-          class="form-control"
-          type="number"
-          id="nftId"
-          placeholder="Serial Number"
-        />
-        <br />
+        <div class="col h100">
 
-        <input
-          class="form-control"
-          type="text"
-          id="nftUri"
-          placeholder="IPFS location"
-        />
-        <br />
+          <div id="secureWipeArea">
+            <input
+              class="form-control"
+              type="text"
+              id="nftTo"
+              placeholder="Wallet Address"
+            />
+            <br />
 
-        <button onclick="mint()" class="btn btn-primary">
-          Create Secure Wipe NFT
-        </button>
-        <br />
+            <input
+              class="form-control"
+              type="number"
+              id="nftId"
+              placeholder="Serial Number"
+            />
+            <br />
+    
+            <input
+              class="form-control"
+              type="text"
+              id="nftUri"
+              placeholder="IPFS location"
+            />
+            <br />
+    
+            <button 
+              onclick="mint()" 
+              class="btn btn-primary"
+            >
+              Create NFT
+            </button>
+            <br />
+      </div>
+        </div>
+    </div>
+
+    
+      <br>
+      <div class="p-1 bg-secondary w-100"></div>
+      <br>
+
+      <!-- Verify NFT of Secure Wipe -->
+      <div class="row align-items-center justify-content-center flex-fill">
+        <!-- Get Asset Info -->
+        <div class="col h100">
+          <div class="container" id="getOwnerArea">
+            <input type="number" id="nftOwnerId" placeholder="Enter Serial Number" />
+            <br>
+            <br>
+            <button 
+              onclick="getOwner()" 
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#ipfsModal"
+            >
+              View Certificate
+            </button>
+            <!-- <p id="ownerArea">Status: owner will display here</p>
+            <p id="ipfsArea">Status: IPFS location will display here</p> -->
+          </div>
+        </div>
+    
+        <div class="col h100">
+          <h2 class="text-warning">View a Certificate</h2>
+          <br />
+          <p class="text-white">
+            If you need to view a certificate of secure wipe of an asset. Enter 
+            the serial number and click "View Certificate"
+          </p>
+        </div>
       </div>
     </div>
-    <br /><br />
-
-    <!-- Get Asset Info -->
-    <div class="container" id="getOwnerArea">
-      <input type="number" id="nftOwnerId" placeholder="Enter Serial Number" />
-      <button onclick="getOwner()" class="btn btn-primary">
-        Get Cert Details
-      </button>
-      <p id="ownerArea">Status: owner will display here</p>
-      <p id="ipfsArea">Status: IPFS location will display here</p>
+    
+    <!-- Modal IPFS Cert -->
+    <div
+      class="modal fade"
+      id="ipfsModal"
+      tabindex="-1"
+      aria-labelledby="ipfsModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ipfsModal">Secure Wipe Certificate</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <!-- Modal Table -->
+          <div class="modal-body">
+            <p id="ownerArea">Owner will display here</p>
+            <div id="detailsArea" style="display: none">
+          
+          </div>
+            <p id="ipfsArea">Status: IPFS location will display here</p>
+            <div class=container>
+              <img id="ipfsIMG" src="" style="max-width: 720px; margin: auto;" alt="IPFS File" />
+            </div>
+          </div>
+        
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- include footer partials -->
@@ -547,6 +642,7 @@
         document.getElementById(
           "ipfsArea"
         ).innerHTML = `IPFS Location: <a href=${ipfsLoc}>${ipfsLoc}</a>`;
+        document.getElementById("ipfsIMG").src = ipfsLoc;
       };
     </script>
   </body>

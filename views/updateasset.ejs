@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Blockchain and web3 application for asset management Update Asset"
+    />
     <title>SmartAssetIT Update Asset</title>
     <!-- style sheet from https://codepen.io/asfarmed/pen/zYQYMy -->
     <link rel="stylesheet" href="./style2.css" />
@@ -21,7 +25,6 @@
     </h1>
 
     <!-- Get Asset Details-->
-    <div class="container">
     <div
       class="container-fluid cover-container text-center d-flex flex-column w-75"
     >
@@ -40,60 +43,63 @@
         </div>
 
         <div class="col h100">
-      <!-- Get Details -->
-      <!-- serialGet Partial -->
-      <%- include('partials/serialGet') %>
-            
-      <!-- include connectMetaMask partials -->
-      <%- include('partials/connectMetaMask') %>
-
-      <button onclick="populateAssetDetails()" class="btn btn-primary">
-        Get Current Asset Details
-      </button>
-      <p></p>
-                  <!-- Spinner -->
-      <%- include('partials/spinner') %>
-
-      <!-- Display asset does not exist Alert -->
-      <%- include('partials/assetDoesNotExistArea') %> 
-
-      <!-- Display Asset Updated Alert -->
-      <%- include('partials/statusArea') %>
-    </div>
-
-      <!-- Update Asset -->
-      <div id="formArea" class="container d-none">
-            <div class="row align-items-center justify-content-center flex-fill">
-              <div class="col h100">
-      <!-- Asset Form partials-->
-      <%- include('partials/assetForm') %>
-  
-      <button onclick="updateAsset()" type="submit" class="btn btn-primary">
-        Update Asset
-      </button>
-      </div>
-        
-        <div class="col h100">
-          <h2 class="text-warning">Update Details</h2>
-          <br />
-      
-                <p class="text-white">
-            To update the details of your asset change the details as required
-            and click "Update Asset"<br>
-            <p class="text-white">
-            Please note the following fields are not updateable:<br><br>
-              <b>
-              Asset Serial Number<br>
-              Asset Type<Br>
-              Asset Make<br>
-              Asset Model<br>
-              </b>
-            </p>
-          </p>
+          <!-- Get Details -->
+          <!-- serialGet Partial -->
+          <%- include('partials/serialGet') %>
+                
+          <!-- include connectMetaMask partials -->
+          <%- include('partials/connectMetaMask') %>
+    
+          <button onclick="populateAssetDetails()" class="btn btn-primary">
+            Get Current Asset Details
+          </button>
+          <p></p>
+                      <!-- Spinner -->
+          <%- include('partials/spinner') %>
+    
+          <!-- Display asset does not exist Alert -->
+          <%- include('partials/assetDoesNotExistArea') %> 
+    
+          <!-- Display Asset Updated Alert -->
+          <%- include('partials/statusArea') %>
         </div>
 
+        <!-- Update Asset -->
+        <div id="formArea" class="container d-none">
+          <div class="row align-items-center justify-content-center flex-fill">
+                <div class="col h100">
+                  <!-- Asset Form partials-->
+                  <%- include('partials/assetForm') %>
+              
+                  <button onclick="updateAsset()" type="submit" class="btn btn-primary">
+                    Update Asset
+                  </button>
+                </div>
+          
+                <div class="col h100">
+                  <h2 class="text-warning">Update Details</h2>
+                  <br />
+              
+                        <p class="text-white">
+                    To update the details of your asset change the details as required
+                    and click "Update Asset"<br>
+                    <p class="text-white">
+                    Please note the following fields are not updateable:<br><br>
+                      <b>
+                      Asset Serial Number<br>
+                      Asset Type<Br>
+                      Asset Make<br>
+                      Asset Model<br>
+                      </b>
+                    </p>
+                  </p>
+                </div>
+  
+          </div>
+        </div>
+      </div>
     </div>
-
+      
     <!-- include footer partials -->
     <%- include('partials/footer') %>
 
