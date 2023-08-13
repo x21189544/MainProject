@@ -189,10 +189,10 @@
         try {
           const result = await window.contract.methods
             .performMaintenance(serial, maintenancePerformed)
-            .send({ from: account });s
+            .send({ from: account });
+          document.getElementById("statusArea").innerHTML = `Maintenance updated`;
           document.getElementById("statusArea").classList.remove("d-none");
           document.getElementById("spinner").classList.add("d-none");
-          document.getElementById("formArea").classList.add("d-none");
         } catch (err) {
           document.getElementById("statusArea").classList.remove("alert-success");
           document.getElementById("statusArea").classList.add("alert-danger");
